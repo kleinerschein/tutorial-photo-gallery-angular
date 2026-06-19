@@ -1,0 +1,52 @@
+<ion-content fullscreen class="login-content">
+  <div class="login-container">
+
+    <div class="logo-area">
+      <div class="logo-circle">
+        <ion-icon name="storefront-outline"></ion-icon>
+      </div>
+
+      <h1>Vende+</h1>
+      <p>Gerencie suas vendas de forma simples</p>
+    </div>
+
+    <ion-card>
+      <ion-card-content>
+
+        <ion-item>
+          <ion-icon name="mail-outline" slot="start"></ion-icon>
+          <ion-input
+            type="email"
+            placeholder="E-mail">
+          </ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+          <ion-input
+            type="password"
+            placeholder="Senha">
+          </ion-input>
+        </ion-item>
+
+        <ion-button
+          expand="block"
+          class="login-button"
+          (click)="irParaTabs()"
+          >
+          Entrar
+        </ion-button>
+
+        <div class="links">
+          <a href="#">Esqueceu a senha?</a>
+        </div>
+
+      </ion-card-content>
+    </ion-card>
+
+    <div class="footer">
+      <p>© 2026 Vende+</p>
+    </div>
+
+  </div>
+</ion-content>

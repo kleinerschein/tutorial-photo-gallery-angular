@@ -19,7 +19,7 @@ export class PhotoService {
   public async loadSaved() {
     // Retrieve cached photo array data
     const photoList = await Preferences.get({ key: this.PHOTO_STORAGE });
-    this.photos = JSON.parse(photoList.value) || [];
+    this.photos = JSON.parse((photoList.value) as string) || [];
 
     // If running on the web...
     if (!this.platform.is('hybrid')) {
@@ -102,7 +102,7 @@ export class PhotoService {
     if (this.platform.is('hybrid')) {
       // Read the file into base64 format
       const file = await Filesystem.readFile({
-        path: photo.path,
+        path: photo.path as string,
       });
 
       return file.data;
@@ -147,5 +147,5 @@ export class PhotoService {
 
 export interface UserPhoto {
   filepath: string;
-  webviewPath: string;
+  webviewPath?: string;
 }

@@ -1,0 +1,113 @@
+<ion-header translucent="true">
+  <ion-toolbar>
+
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>
+      {{ produto.CodPro }}
+    </ion-title>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div class="hero">
+
+    <img
+      [src]="produto.ImgPro"
+      [alt]="produto.NomPro">
+
+  </div>
+
+  <div class="content">
+
+    <div class="family">
+      {{ produto.CodFam }}
+    </div>
+
+    <h1>
+      {{ produto.NomPro }}
+    </h1>
+
+    <div class="variation">
+      {{ produto.CodDer }} - {{ produto.DesDer }}
+    </div>
+
+    <div class="price">
+      R$ {{ preco | number:'1.2-2' }}
+    </div>
+
+    <ion-card>
+
+      <ion-card-header>
+        <ion-card-title>
+          Informações
+        </ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+
+        <div class="info-row">
+          <span>Código</span>
+          <strong>{{ produto.CodPro }}</strong>
+        </div>
+
+        <div class="info-row">
+          <span>Origem</span>
+          <strong>{{ produto.CodOri }}</strong>
+        </div>
+
+        <div class="info-row">
+          <span>Família</span>
+          <strong>{{ produto.CodFam }}</strong>
+        </div>
+
+        <div class="info-row">
+          <span>Unidade</span>
+          <strong>{{ produto.UniMed }}</strong>
+        </div>
+
+      </ion-card-content>
+
+    </ion-card>
+
+    <ion-card>
+
+      <ion-card-header>
+        <ion-card-title>
+          Dimensões
+        </ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+
+        <div class="info-row">
+          <span>Altura</span>
+          <strong>{{ produto.AltPro }} mm</strong>
+        </div>
+
+        <div class="info-row">
+          <span>Largura</span>
+          <strong>{{ produto.LarPro }} mm</strong>
+        </div>
+
+        <div class="info-row">
+          <span>Comprimento</span>
+          <strong>{{ produto.ComPro }} mm</strong>
+        </div>
+
+        <div class="info-row">
+          <span>Peso</span>
+          <strong>{{ produto.PesPro }} kg</strong>
+        </div>
+
+      </ion-card-content>
+
+    </ion-card>
+
+  </div>
+
+</ion-content>

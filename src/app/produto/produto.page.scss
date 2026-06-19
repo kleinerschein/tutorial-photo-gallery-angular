@@ -1,0 +1,61 @@
+ion-content {
+  --background: #111827;
+}
+
+.hero {
+  background: white;
+  padding: 24px;
+  text-align: center;
+  border-bottom-right-radius: 16px;
+    border-bottom-left-radius: 16px;
+}
+
+.hero img {
+  width: 100%;
+  max-width: 350px;
+  object-fit: contain;
+}
+
+.content {
+  padding: 16px;
+}
+
+.family {
+  color: #94a3b8;
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+
+h1 {
+  color: white;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.variation {
+  color: #cbd5e1;
+  margin-bottom: 16px;
+}
+
+.price {
+  color: #22c55e;
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+ion-card {
+  border-radius: 16px;
+  margin-bottom: 16px;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+
+.info-row:not(:last-child) {
+  border-bottom: 1px solid #e5e7eb;
+}

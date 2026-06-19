@@ -1,39 +1,55 @@
-import { Component } from '@angular/core';
-import { ActionSheetController } from '@ionic/angular';
-import { UserPhoto, PhotoService } from '../services/photo.service';
+import { Component, OnDestroy } from "@angular/core";
+import { Router } from "@angular/router";
+import { BarcodeScanner } from "@capacitor-community/barcode-scanner";
 
 @Component({
-  selector: 'app-tab2',
-  templateUrl: 'tab2.page.html',
-  styleUrls: ['tab2.page.scss']
+  selector: "app-tab2",
+  templateUrl: "./tab2.page.html",
+  styleUrls: ["./tab2.page.scss"],
 })
-export class Tab2Page {
+export class Tab2Page implements OnDestroy {
+  constructor(private router: Router) {}
 
-  constructor(public photoService: PhotoService, public actionSheetController: ActionSheetController) {}
+  resultado = "";
 
-  async ngOnInit() {
-    await this.photoService.loadSaved();
+  async lerQRCode() {
+    try {
+      const status = await BarcodeScanner.checkPermission({
+        force: true,
+      });
+
+      if (!status.granted) {
+        return;
+      }
+
+      BarcodeScanner.hideBackground();
+      document.body.classList.add("scanner-active");
+
+      const result = await BarcodeScanner.startScan();
+
+      if (result?.hasContent) {
+        this.resultado = result.content ?? "";
+        console.log("QR Code:", this.resultado);
+        const CodPro = this.resultado.split("/")[0] ?? this.resultado;
+        const CodDer = this.resultado.split("/")[1];
+        this.router.navigate(["/produto"], {
+          state: {
+            produto: {
+              CodPro: CodPro
+            },
+          },
+        });
+      }
+    } catch (e) {
+      console.error("Erro ao ler QR Code:", e);
+    } finally {
+      BarcodeScanner.stopScan();
+      document.body.classList.remove("scanner-active");
+    }
   }
 
-  public async showActionSheet(photo: UserPhoto, position: number) {
-    const actionSheet = await this.actionSheetController.create({
-      header: 'Photos',
-      buttons: [{
-        text: 'Delete',
-        role: 'destructive',
-        icon: 'trash',
-        handler: () => {
-          this.photoService.deletePicture(photo, position);
-        }
-      }, {
-        text: 'Cancel',
-        icon: 'close',
-        role: 'cancel',
-        handler: () => {
-          // Nothing to do, action sheet is automatically closed
-         }
-      }]
-    });
-    await actionSheet.present();
+  ngOnDestroy() {
+    BarcodeScanner.stopScan();
+    document.body.classList.remove("scanner-active");
   }
 }
